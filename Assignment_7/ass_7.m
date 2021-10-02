@@ -51,9 +51,11 @@ rank(obsv(Aes,Ces))
 
 % u = Kx +Ld
 
-p = [-8 -10 -12 -6];
+p = [-8 -6 -10 -12];
+%p = [-5 -6 -7 -8];
+
 K = -(place(A,B,p));
-% u = -Kx   -> A-B*K
+% u = -Kx   ->  prendo K = -K -> u = Kx
 
 %% Sylvester equation-> risolta in Wolfram Mathematica
 
@@ -95,3 +97,14 @@ PI = [0 1 0;
   
 Gamma = [-1 -100 10];  
 L = Gamma - K*PI;
+
+%% Analisi Sistema
+
+% Risposta del sistema in base all'ingresso
+D = [0;0];
+sysMec = ss(A,B,C,D);
+sysMectf = minreal(tf(sysMec));
+figure(1)
+bode(sysMectf)
+grid on
+title("Risposta in frequenza Sistema Meccanico")
