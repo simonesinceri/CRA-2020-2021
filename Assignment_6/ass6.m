@@ -1,10 +1,17 @@
+clc
 clear all
 close all
 
 W2 = tf([2],[1 10]);
 W1 = tf([1],[1 1]);
 P = tf([1],[1 -1]);
-C = 5/7;
+
+figure(4)
+rlocus(P)
+sgrid
+
+%%
+C = 1;
 beta = 2;
 
 L = P*C;
