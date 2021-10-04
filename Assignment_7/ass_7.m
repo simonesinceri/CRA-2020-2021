@@ -30,11 +30,6 @@ if(rank(p) == n)
     disp('il sistema è controllabile')
 end
 
-%% Verifica del lemma di Hautus 
-syms omega
-hautus = [(omega*1i)*eye(n)-A B;C(1,:) 0];
-rank(hautus)
-
 %% Osservabilità
 S = [0 0 0;0 0 w;0 -w 0]; % S dipende d omega dove è 0.1
 Q = [0 -1 0];
@@ -44,7 +39,7 @@ Aes = [A Pes;zeros(3,4) S];
 Qes = [Q ; zeros(1,3)];
 Ces = [C Qes];
 
-rank(obsv(Aes,Ces))
+rank(obsv(Aes,Ces));
 
 
 %% Matrice K 
